@@ -20,7 +20,7 @@ visual studio code (visual xanh), PostgreSQL, Postman (dùng để test api => n
 ## Bước 1: Clone Project từ GitHub
 ```bash
 git clone <https://github.com/BTdemo01/ATTstore.git>
-cd <ATTstore>
+
 ```
 
 
@@ -54,9 +54,9 @@ source venv/bin/activate
 
 ---
 
-### ✅ 3. Kết nối database
+### ✅ 3. Kết nối project với database
 - Vào file:  be/att_store_backend/settings.py
-- Kiểm tra đoạn code sau:
+- Kiểm tra và sửa đoạn code sau:
   
 ```bash
 
@@ -75,14 +75,22 @@ DATABASES = {
 
 ---
 
-### ✅ 4. Chạy migrations để tạo database
+### ✅ 4. Chạy migrations để tạo database 
 ```bash
 python manage.py migrate
 ```
 
+
+### ✅ 5. Thêm dữ liệu cho database
+- Vào phần mềm pgAdmin 4 
+- Kết nối db đã tạo ở bước 2
+- Mở file data_att.sql trong file ATTstore đã Clone về trước đó
+- Chạy file data_att.sql trong db đã tạo ở bước 2 để thêm dữ liệu
+
+
 ---
 
-### ✅ 5. (Optional) Tạo superuser để vào admin
+### ✅ 6. Tạo superuser để vào admin
 
 ```bash
 python manage.py createsuperuser
@@ -92,7 +100,7 @@ python manage.py createsuperuser
 
 ---
 
-### ✅ 6. Chạy server Django
+### ✅ 7. Chạy server Django
 
 
 ```bash
