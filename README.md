@@ -17,29 +17,29 @@ visual studio code (visual xanh), PostgreSQL, Postman (dùng để test api => n
 
 # 📖 Hướng Dẫn Chạy Project Django Trên VS Code:
 
-## ✅ 1. Clone Project từ GitHub
+## Bước 1: Clone Project từ GitHub
 ```bash
 git clone <https://github.com/BTdemo01/ATTstore.git>
 cd <ATTstore>
 ```
 
 
-# Database:
+## Bước 2: Tạo Database:
 
-## ✅ 1. Clone Project từ GitHub 
-
-
-
-# BACKEND:
-
-## ✅ 1. Mở project bằng VS Code
+### ✅ 1. Tạo database mới trong PostgreSQL 
 ```bash
-code .
+
 ```
+
+
+## Bước 3: Chạy BACKEND:
+
+### ✅ 1. Mở project bằng VS Code
+
 
 ---
 
-## ✅ 2. Di chuyển đến virtual environment có sẵn trên project (môi trường ảo)
+### ✅ 2. Di chuyển đến virtual environment có sẵn trên project (môi trường ảo)
 
 Kích hoạt môi trường ảo:
 - **Windows:**
@@ -54,44 +54,60 @@ source venv/bin/activate
 
 ---
 
-## ✅ 3. Kết nối database
-vào file 
+### ✅ 3. Kết nối database
+- Vào file:  be/att_store_backend/settings.py
+- Kiểm tra đoạn code sau:
+  
+```bash
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'att_db',             # Tên DB bạn tạo ở Bước 2
+        'USER': 'postgres',           # đổi thành User postgres của bạn 
+        'PASSWORD': '123456',         # Mật khẩu postgres của bạn 
+        'HOST': 'localhost',          # Hoặc '127.0.0.1'. Nếu DB ở máy khác, điền IP/hostname
+        'PORT': '5432',               # Port postgres của bạn 
+    }
+}
+
+```
+
+---
+
+### ✅ 4. Chạy migrations để tạo database
 ```bash
 python manage.py migrate
 ```
 
 ---
 
-## ✅ 4. Chạy migrations để tạo database
-```bash
-python manage.py migrate
-```
+### ✅ 5. (Optional) Tạo superuser để vào admin
 
----
-
-## ✅ 5. (Optional) Tạo superuser để vào admin
 ```bash
 python manage.py createsuperuser
 ```
-=> thêm tài khoản admin của bạn
+- thêm tài khoản admin của bạn
+
+
 ---
 
-## ✅ 6. Chạy server Django
+### ✅ 6. Chạy server Django
 
-Backend:
 
 ```bash
 python manage.py runserver
 ```
+
 - Truy cập: [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api)  để vào trang REST API
-- Truy cập: [127.0.0.1:8000/api/schema/swagger-ui/#/](127.0.0.1:8000/api/schema/swagger-ui/#/)  để vào trang kiểm tra api chạy đúng hay chưa
+- Truy cập: [http:127.0.0.1:8000/api/schema/swagger-ui/#/](http:127.0.0.1:8000/api/schema/swagger-ui/#/)  để vào trang kiểm tra api chạy đúng hay chưa
 
 
-# FRONTEND: 
+## Bước 4: Chạy FRONTEND
 
-## 1. 🧰 Chuẩn bị trước
+### 1. 🧰 Chuẩn bị trước
 
-### ✅ Cài Node.js (nếu chưa có)
+#### ✅ Cài Node.js (nếu chưa có)
 
 - Truy cập trang: https://nodejs.org
 - Tải và cài bản có chữ **LTS (Long Term Support)**
@@ -102,14 +118,14 @@ node -v
 npm -v
 ```
 
-## 2.Tải thư viện cần thiết
+### 2.Tải thư viện cần thiết
 - trong thư mục project chạy lệnh để cài đặt thư viện cần thiết
 
 ```bash
 npm install
 ```
 
-## 3.Chạy project
+### 3.Chạy project
 🔹 Nếu project dùng Vite (thường có file vite.config.js):
 - chạy lệnh
 
