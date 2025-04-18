@@ -4,6 +4,8 @@
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "chart.js": "^4.4.8",
     "leaflet": "^1.9.4",
-    "vue-chartjs": "^5.3.2"
+    "pinia": "^3.0.2",
+    "vue-chartjs": "^5.3.2",
+    "xlsx": "^0.18.5"
   }
 }

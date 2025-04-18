@@ -7,26 +7,24 @@
 
     <div v-if="!loading && !error" class="product-grid">
       <div v-for="product in featuredProducts" :key="product.id" class="product-card">
-         <div class="product-image">
-           <img v-if="product.image_url" :src="product.image_url" :alt="product.name" @error="onImageError"/>
-           <img v-else src="https://via.placeholder.com/200x160.png?text=No+Image" alt="Ảnh sản phẩm" /> </div>
-         <div class="product-info">
-            <h3 class="product-name">{{ product.name }}</h3>
-            <p class="product-price">{{ formatCurrency(product.price) }}</p>
-         </div>
-         <div class="card-actions">
-            <button class="details-button" @click="viewProductDetails(product.id)">
-              Xem Chi Tiết
-            </button>
-            <button class="add-to-cart-button" @click="addToCart(product)">
-              Thêm vào giỏ
-            </button>
-         </div>
-      </div>
+          <div class="product-image">
+            <img v-if="product.image_url" :src="product.image_url" :alt="product.name" @error="onImageError"/>
+            <img v-else src="https://via.placeholder.com/200x160.png?text=No+Image" alt="Ảnh sản phẩm" />
+          </div>
+          <div class="product-info">
+             <h3 class="product-name">{{ product.name }}</h3>
+             <p class="product-price">{{ formatCurrency(product.price) }}</p>
+          </div>
+          <div class="card-actions">
+            <p class="product-stock">
+              Tồn kho: {{ product.stock_quantity !== undefined ? product.stock_quantity : 'N/A' }}
+            </p>
+             </div>
+          </div>
     </div>
 
     <div v-if="!loading && featuredProducts.length === 0" class="no-results">
-       Hiện chưa có sản phẩm nào nổi bật.
+      Hiện chưa có sản phẩm nào nổi bật.
      </div>
   </div>
 </template>
@@ -139,7 +137,32 @@ h1 {
 .product-name { font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: #343a40; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 3em; }
 .product-price { font-size: 1.1rem; font-weight: bold; color: #d63384; margin-top: auto; padding-top: 8px; }
 
-.card-actions { display: flex; justify-content: space-around; padding: 0 12px 12px 12px; gap: 8px; }
+/* THAY ĐỔI Ở ĐÂY */
+.card-actions {
+  /* Thay vì flex và space-around, chỉ cần padding */
+  padding: 8px 12px 12px 12px;
+  text-align: center; /* Căn giữa nội dung tồn kho */
+  min-height: 38px; /* Giữ chiều cao tương đương với nút cũ nếu cần */
+  display: flex; /* Optional: căn giữa theo chiều dọc nếu cần */
+  align-items: center; /* Optional: căn giữa theo chiều dọc */
+  justify-content: center; /* Optional: căn giữa theo chiều ngang */
+}
+
+.product-stock {
+  font-size: 0.95rem; /* Kích thước chữ */
+  color: #333;      /* Màu chữ */
+  font-weight: 500;
+  margin: 0; /* Bỏ margin mặc định của <p> */
+}
+
+/* Thêm class này nếu dùng lựa chọn hiển thị hết hàng */
+.product-stock-out {
+  font-size: 0.95rem;
+  color: red; /* Màu đỏ cho hết hàng */
+  font-weight: bold;
+  margin: 0;
+}
+
 .card-actions button { border: none; padding: 8px 10px; border-radius: 5px; cursor: pointer; font-weight: 500; transition: background-color 0.2s ease; font-size: 0.9rem; flex-grow: 1; text-align: center; }
 .details-button { background-color: #6c757d; color: #ffffff; }
 .details-button:hover { background-color: #5a6268; }

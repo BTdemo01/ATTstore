@@ -14,6 +14,7 @@ import RevenueReportView from '@/views/RevenueReportView.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 
+
 const ProductListView = () => import('../views/ProductListView.vue');
 const AddProductView = () => import('../views/AddProductView.vue'); // Import component mới
 const CreateOrderView = () => import('../views/CreateOrderView.vue'); // Import component mới
